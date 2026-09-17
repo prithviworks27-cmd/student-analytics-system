@@ -158,6 +158,21 @@ def delete_student(student_id):
     conn.commit()
     conn.close()
 
+def add_subject(name):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO subjects (name) VALUES (?)", (name,))
+    conn.commit()
+    conn.close()
+
+def get_all_subjects():
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM subjects ORDER BY name")
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
 
 def verify_login(username: str, password: str):
     """Returns the user row if credentials are correct, else None."""
