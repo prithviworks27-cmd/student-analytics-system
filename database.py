@@ -173,6 +173,66 @@ def get_all_subjects():
     conn.close()
     return rows
 
+def mark_attendance(student_id, subject_id, date, status):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """INSERT INTO attendance (student_id, subject_id, date, status)
+           VALUES (?, ?, ?, ?)
+           ON CONFLICT(student_id, subject_id, date)
+           DO UPDATE SET status = excluded.status""",
+        (student_id, subject_id, date, status)
+    )
+    conn.commit()
+    conn.close()
+
+def get_attendance_for_date(subject_id, date):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT students.id AS student_id, students.name, students.roll_no,
+                  attendance.status
+           FROM students
+           LEFT JOIN attendance
+             ON students.id = attendance.student_id
+             AND attendance.subject_id = ?
+             AND attendance.date = ?
+           ORDER BY students.name""",
+        (subject_id, date)
+    )
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+def get_attendance_percentage(student_id, subject_id=None):
+    conn = get_connection()
+    cur = conn.cursor()
+    if subject_id:
+        cur.execute(
+            """SELECT
+                   COUNT(*) AS total,
+                   SUM(CASE WHEN status = 'Present' THEN 1 ELSE 0 END) AS present_count
+               FROM attendance
+               WHERE student_id = ? AND subject_id = ?""",
+            (student_id, subject_id)
+        )
+    else:
+        cur.execute(
+            """SELECT
+                   COUNT(*) AS total,
+                   SUM(CASE WHEN status = 'Present' THEN 1 ELSE 0 END) AS present_count
+               FROM attendance
+               WHERE student_id = ?""",
+            (student_id,)
+        )
+    row = cur.fetchone()
+    conn.close()
+
+    total = row["total"]
+    present = row["present_count"] or 0
+    if total == 0:
+        return 0.0
+    return round((present / total) * 100, 2)
 
 def verify_login(username: str, password: str):
     """Returns the user row if credentials are correct, else None."""
