@@ -48,6 +48,7 @@ def init_db():
         )
     """)
 
+
     # --- Students table ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS students (
@@ -108,6 +109,53 @@ def init_db():
         conn.commit()
         print("Default login created -> username: admin | password: admin123")
 
+    conn.close()
+
+def add_student(name, roll_no, class_name, section):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO students (name, roll_no, class_name, section) VALUES (?, ?, ?, ?)",
+        (name, roll_no, class_name, section)
+    )
+    conn.commit()
+    conn.close()
+
+def get_all_students():
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM students ORDER BY name")
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+def search_students(keyword):
+    conn = get_connection()
+    cur = conn.cursor()
+    like_pattern = f"%{keyword}%"
+    cur.execute(
+        "SELECT * FROM students WHERE name LIKE ? OR roll_no LIKE ? ORDER BY name",
+        (like_pattern, like_pattern)
+    )
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+def update_student(student_id, name, roll_no, class_name, section):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE students SET name = ?, roll_no = ?, class_name = ?, section = ? WHERE id = ?",
+        (name, roll_no, class_name, section, student_id)
+    )
+    conn.commit()
+    conn.close()
+
+def delete_student(student_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM students WHERE id = ?", (student_id,))
+    conn.commit()
     conn.close()
 
 
