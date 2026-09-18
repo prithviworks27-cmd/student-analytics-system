@@ -249,6 +249,21 @@ def add_marks(student_id, subject_id, exam_type, marks_obtained, max_marks):
     conn.commit()
     conn.close()
 
+def get_marks_for_student(student_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT subjects.name AS subject_name, marks.exam_type,
+                  marks.marks_obtained, marks.max_marks
+           FROM marks
+           JOIN subjects ON marks.subject_id = subjects.id
+           WHERE marks.student_id = ?
+           ORDER BY subjects.name""",
+        (student_id,)
+    )
+    rows = cur.fetchall()
+    conn.close()
+    return rows
 
 
 def verify_login(username: str, password: str):
