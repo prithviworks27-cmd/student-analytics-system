@@ -94,6 +94,7 @@ def init_db():
             max_marks REAL NOT NULL,
             FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
             FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
+            UNIQUE(student_id, subject_id, exam_type)
         )
     """)
 
