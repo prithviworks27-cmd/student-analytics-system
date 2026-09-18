@@ -282,6 +282,23 @@ def get_class_marks(subject_id, exam_type):
     conn.close()
     return rows
 
+def get_overall_percentage(student_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT SUM(marks_obtained) AS total_obtained, SUM(max_marks) AS total_max
+           FROM marks
+           WHERE student_id = ?""",
+        (student_id,)
+    )
+    row = cur.fetchone()
+    conn.close()
+
+    total_obtained = row["total_obtained"] or 0
+    total_max = row["total_max"] or 0
+    if total_max == 0:
+        return 0.0
+    return round((total_obtained / total_max) * 100, 2)
 
 def verify_login(username: str, password: str):
     """Returns the user row if credentials are correct, else None."""
