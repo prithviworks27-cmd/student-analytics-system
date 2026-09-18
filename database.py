@@ -264,6 +264,23 @@ def get_marks_for_student(student_id):
     rows = cur.fetchall()
     conn.close()
     return rows
+def get_class_marks(subject_id, exam_type):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT students.id AS student_id, students.name, students.roll_no,
+                  marks.marks_obtained, marks.max_marks
+           FROM students
+           LEFT JOIN marks
+             ON students.id = marks.student_id
+             AND marks.subject_id = ?
+             AND marks.exam_type = ?
+           ORDER BY students.name""",
+        (subject_id, exam_type)
+    )
+    rows = cur.fetchall()
+    conn.close()
+    return rows
 
 
 def verify_login(username: str, password: str):
