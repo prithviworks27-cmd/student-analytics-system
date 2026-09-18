@@ -235,6 +235,22 @@ def get_attendance_percentage(student_id, subject_id=None):
         return 0.0
     return round((present / total) * 100, 2)
 
+def add_marks(student_id, subject_id, exam_type, marks_obtained, max_marks):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """INSERT INTO marks (student_id, subject_id, exam_type, marks_obtained, max_marks)
+           VALUES (?, ?, ?, ?, ?)
+           ON CONFLICT(student_id, subject_id, exam_type)
+           DO UPDATE SET marks_obtained = excluded.marks_obtained,
+                         max_marks = excluded.max_marks""",
+        (student_id, subject_id, exam_type, marks_obtained, max_marks)
+    )
+    conn.commit()
+    conn.close()
+
+
+
 def verify_login(username: str, password: str):
     """Returns the user row if credentials are correct, else None."""
     conn = get_connection()
