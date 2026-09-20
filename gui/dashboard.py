@@ -7,6 +7,7 @@ plug in the real screens (Students, Attendance, Marks, Analytics) by
 swapping out what's shown in `self.content_area`.
 """
 
+from gui.attendance_screen import AttendanceScreen
 import customtkinter as ctk
 
 
@@ -34,7 +35,7 @@ class Dashboard(ctk.CTk):
         for item in nav_items:
             ctk.CTkButton(
                 sidebar, text=item, width=170,
-                command=lambda i=item: self._show_placeholder(i)
+                command=lambda i=item: self._show_section(i)
             ).pack(pady=6, padx=15)
 
         ctk.CTkButton(
@@ -46,19 +47,20 @@ class Dashboard(ctk.CTk):
         self.content_area = ctk.CTkFrame(self)
         self.content_area.pack(side="right", fill="both", expand=True, padx=20, pady=20)
 
-        self._show_placeholder("Home")
+        self._show_section("Home")
 
-    def _show_placeholder(self, section_name):
-        """Clears the content area and shows a placeholder label.
-        Each of these will be replaced by a real screen in later steps."""
+    def _show_section(self, section_name):
         for widget in self.content_area.winfo_children():
             widget.destroy()
 
-        ctk.CTkLabel(
-            self.content_area,
-            text=f"{section_name} module\n(coming in the next build step)",
-            font=ctk.CTkFont(size=18)
-        ).pack(expand=True)
+        if section_name == "Attendance":
+            AttendanceScreen(self.content_area).pack(fill="both", expand=True)
+        else:
+            ctk.CTkLabel(
+                self.content_area,
+                text=f"{section_name} module\n(coming in the next build step)",
+                font=ctk.CTkFont(size=18)
+            ).pack(expand=True)
 
     def _logout(self):
         self.destroy()
