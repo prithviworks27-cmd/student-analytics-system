@@ -8,6 +8,7 @@ swapping out what's shown in `self.content_area`.
 """
 
 from gui.attendance_screen import AttendanceScreen
+from gui.marks_screen import MarksScreen
 import customtkinter as ctk
 
 
@@ -55,6 +56,8 @@ class Dashboard(ctk.CTk):
 
         if section_name == "Attendance":
             AttendanceScreen(self.content_area).pack(fill="both", expand=True)
+        elif section_name == "Marks":
+            MarksScreen(self.content_area).pack(fill="both", expand=True)
         else:
             ctk.CTkLabel(
                 self.content_area,
