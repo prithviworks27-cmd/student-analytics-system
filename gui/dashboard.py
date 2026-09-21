@@ -10,6 +10,7 @@ swapping out what's shown in `self.content_area`.
 from gui.attendance_screen import AttendanceScreen
 from gui.marks_screen import MarksScreen
 from gui.analytics_screen import AnalyticsScreen
+from gui.students_screen import StudentsScreen
 import customtkinter as ctk
 
 
@@ -55,7 +56,9 @@ class Dashboard(ctk.CTk):
         for widget in self.content_area.winfo_children():
             widget.destroy()
 
-        if section_name == "Attendance":
+        if section_name == "Students":
+            StudentsScreen(self.content_area).pack(fill="both", expand=True)
+        elif section_name == "Attendance":
             AttendanceScreen(self.content_area).pack(fill="both", expand=True)
         elif section_name == "Marks":
             MarksScreen(self.content_area).pack(fill="both", expand=True)
