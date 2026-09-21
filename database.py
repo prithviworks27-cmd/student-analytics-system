@@ -300,6 +300,55 @@ def get_overall_percentage(student_id):
         return 0.0
     return round((total_obtained / total_max) * 100, 2)
 
+def get_attendance_trend(subject_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT date,
+                  COUNT(*) AS total,
+                  SUM(CASE WHEN status = 'Present' THEN 1 ELSE 0 END) AS present_count
+           FROM attendance
+           WHERE subject_id = ?
+           GROUP BY date
+           ORDER BY date""",
+        (subject_id,)
+    )
+    rows = cur.fetchall()
+    conn.close()
+
+    trend = []
+    for row in rows:
+        pct = round((row["present_count"] / row["total"]) * 100, 2) if row["total"] else 0
+        trend.append((row["date"], pct))
+    return trend
+
+
+def get_grade_distribution(subject_id, exam_type):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT marks_obtained, max_marks FROM marks
+           WHERE subject_id = ? AND exam_type = ?""",
+        (subject_id, exam_type)
+    )
+    rows = cur.fetchall()
+    conn.close()
+
+    buckets = {"0-40": 0, "40-60": 0, "60-75": 0, "75-90": 0, "90-100": 0}
+    for row in rows:
+        pct = (row["marks_obtained"] / row["max_marks"]) * 100
+        if pct < 40:
+            buckets["0-40"] += 1
+        elif pct < 60:
+            buckets["40-60"] += 1
+        elif pct < 75:
+            buckets["60-75"] += 1
+        elif pct < 90:
+            buckets["75-90"] += 1
+        else:
+            buckets["90-100"] += 1
+    return buckets
+
 def verify_login(username: str, password: str):
     """Returns the user row if credentials are correct, else None."""
     conn = get_connection()

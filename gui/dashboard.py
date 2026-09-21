@@ -9,6 +9,7 @@ swapping out what's shown in `self.content_area`.
 
 from gui.attendance_screen import AttendanceScreen
 from gui.marks_screen import MarksScreen
+from gui.analytics_screen import AnalyticsScreen
 import customtkinter as ctk
 
 
@@ -58,6 +59,8 @@ class Dashboard(ctk.CTk):
             AttendanceScreen(self.content_area).pack(fill="both", expand=True)
         elif section_name == "Marks":
             MarksScreen(self.content_area).pack(fill="both", expand=True)
+        elif section_name == "Analytics":
+            AnalyticsScreen(self.content_area).pack(fill="both", expand=True)
         else:
             ctk.CTkLabel(
                 self.content_area,
