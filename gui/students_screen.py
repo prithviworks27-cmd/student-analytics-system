@@ -1,8 +1,11 @@
+import os
+
 import customtkinter as ctk
 from tkinter import messagebox
 from database import get_all_students, search_students, add_student, update_student, delete_student
 from database import get_attendance_percentage, get_overall_percentage
 from ml_model import predict_risk
+from reports import generate_student_report_pdf, generate_class_summary_excel
 
 
 class StudentsScreen(ctk.CTkFrame):
@@ -20,6 +23,10 @@ class StudentsScreen(ctk.CTkFrame):
 
         ctk.CTkButton(top_row, text="Search", width=90, command=self._on_search).pack(side="left", padx=(0, 20))
         ctk.CTkButton(top_row, text="+ Add Student", width=130, command=self._open_add_form).pack(side="left")
+        ctk.CTkButton(
+            top_row, text="Export Class Summary (Excel)", width=210,
+            command=self._export_class_summary
+        ).pack(side="left", padx=(20, 0))
 
         self.list_frame = ctk.CTkScrollableFrame(self, label_text="Students")
         self.list_frame.pack(fill="both", expand=True, padx=10, pady=(0, 10))
@@ -67,6 +74,10 @@ class StudentsScreen(ctk.CTkFrame):
             row, text="Delete", width=70, fg_color="#B22222", hover_color="#8B0000",
             command=lambda s=student: self._confirm_delete(s)
         ).pack(side="left", padx=5)
+        ctk.CTkButton(
+            row, text="Export PDF", width=90,
+            command=lambda s=student: self._export_student_pdf(s)
+        ).pack(side="left", padx=5)
 
     def _confirm_delete(self, student):
         confirmed = messagebox.askyesno(
@@ -77,6 +88,15 @@ class StudentsScreen(ctk.CTkFrame):
         if confirmed:
             delete_student(student["id"])
             self._load_students()
+
+    def _export_student_pdf(self, student):
+        path = generate_student_report_pdf(student)
+        messagebox.showinfo("Report Exported", f"Saved to:\n{os.path.abspath(path)}")
+
+    def _export_class_summary(self):
+        students = get_all_students()
+        path = generate_class_summary_excel(students)
+        messagebox.showinfo("Excel Exported", f"Saved to:\n{os.path.abspath(path)}")
 
     def _open_add_form(self):
         self._open_student_form(title="Add Student", student=None)
