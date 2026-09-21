@@ -5,16 +5,19 @@ Loads the trained At-Risk classifier and exposes a simple function
 the rest of the app can call: predict_risk(attendance_pct, marks_pct).
 """
 
+import os
 import pandas as pd
 import joblib
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "at_risk_model.joblib")
 _model = None
 
 
 def _get_model():
     global _model
     if _model is None:
-        _model = joblib.load("at_risk_model.joblib")
+        _model = joblib.load(MODEL_PATH)
     return _model
 
 

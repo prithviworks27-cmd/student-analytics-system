@@ -12,6 +12,12 @@ import sqlite3
 import os
 import hashlib
 
+
+def normalize_name(text):
+    """Standardizes text so casing differences don't create duplicate/mismatched
+    entries. e.g. 'data structures', 'DATA STRUCTURES', 'Data Structures'
+    all become 'Data Structures'. Same idea for exam types like 'mid-term'."""
+    return text.strip().title()
 DB_NAME = os.path.join(os.path.dirname(__file__), "school.db")
 
 
@@ -160,6 +166,7 @@ def delete_student(student_id):
     conn.close()
 
 def add_subject(name):
+    name = normalize_name(name)
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("INSERT INTO subjects (name) VALUES (?)", (name,))
@@ -236,6 +243,7 @@ def get_attendance_percentage(student_id, subject_id=None):
     return round((present / total) * 100, 2)
 
 def add_marks(student_id, subject_id, exam_type, marks_obtained, max_marks):
+    exam_type = normalize_name(exam_type)
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
@@ -265,6 +273,7 @@ def get_marks_for_student(student_id):
     conn.close()
     return rows
 def get_class_marks(subject_id, exam_type):
+    exam_type = normalize_name(exam_type)
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
@@ -324,6 +333,7 @@ def get_attendance_trend(subject_id):
 
 
 def get_grade_distribution(subject_id, exam_type):
+    exam_type = normalize_name(exam_type)
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(

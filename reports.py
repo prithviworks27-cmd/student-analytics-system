@@ -18,7 +18,8 @@ from ml_model import predict_risk
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment
 
-REPORTS_DIR = "reports_output"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+REPORTS_DIR = os.path.join(BASE_DIR, "reports_output")
 
 
 def generate_student_report_pdf(student):

@@ -11,6 +11,7 @@ from gui.attendance_screen import AttendanceScreen
 from gui.marks_screen import MarksScreen
 from gui.analytics_screen import AnalyticsScreen
 from gui.students_screen import StudentsScreen
+from gui.subjects_screen import SubjectsScreen
 import customtkinter as ctk
 
 
@@ -34,7 +35,7 @@ class Dashboard(ctk.CTk):
             font=ctk.CTkFont(size=14, weight="bold"), justify="left"
         ).pack(pady=(20, 20), padx=15, anchor="w")
 
-        nav_items = ["Students", "Attendance", "Marks", "Analytics"]
+        nav_items = ["Students", "Subjects", "Attendance", "Marks", "Analytics"]
         for item in nav_items:
             ctk.CTkButton(
                 sidebar, text=item, width=170,
@@ -58,6 +59,8 @@ class Dashboard(ctk.CTk):
 
         if section_name == "Students":
             StudentsScreen(self.content_area).pack(fill="both", expand=True)
+        elif section_name == "Subjects":
+            SubjectsScreen(self.content_area).pack(fill="both", expand=True)
         elif section_name == "Attendance":
             AttendanceScreen(self.content_area).pack(fill="both", expand=True)
         elif section_name == "Marks":
