@@ -1,0 +1,301 @@
+attendance_pct,marks_pct,risk_label
+74.8,22.0,At Risk
+45.6,78.9,Safe
+92.5,27.0,Safe
+32.1,37.5,At Risk
+31.9,35.9,At Risk
+68.1,37.6,At Risk
+86.7,20.5,At Risk
+78.9,47.2,Safe
+97.0,46.9,Safe
+36.8,87.8,Safe
+86.5,78.4,Safe
+98.1,50.3,Safe
+88.1,69.5,Safe
+70.4,76.4,Safe
+46.0,43.2,At Risk
+46.3,28.1,At Risk
+74.5,49.2,Safe
+44.7,41.4,At Risk
+75.4,68.7,Safe
+81.0,33.1,Safe
+99.3,71.2,Safe
+77.9,87.4,Safe
+46.0,22.6,At Risk
+48.7,36.9,At Risk
+91.3,45.2,Safe
+57.7,93.2,Safe
+48.5,39.7,At Risk
+48.4,66.8,At Risk
+58.0,37.5,At Risk
+65.7,27.3,Safe
+37.7,70.2,At Risk
+59.6,25.1,At Risk
+99.7,62.3,Safe
+90.3,20.9,At Risk
+77.7,63.0,Safe
+74.9,28.9,At Risk
+61.8,96.3,Safe
+48.4,60.0,Safe
+93.9,89.6,Safe
+74.7,68.7,Safe
+83.4,63.2,Safe
+67.1,20.0,At Risk
+31.4,94.3,Safe
+88.2,44.6,Safe
+91.5,95.8,Safe
+64.0,25.5,At Risk
+83.6,30.3,Safe
+68.5,41.2,At Risk
+59.6,36.9,At Risk
+81.1,36.1,Safe
+99.7,72.0,Safe
+66.2,29.7,At Risk
+53.7,67.1,Safe
+45.4,25.7,At Risk
+46.0,92.4,Safe
+35.0,39.0,At Risk
+45.0,30.6,At Risk
+70.0,57.8,Safe
+86.5,35.2,Safe
+60.2,53.9,Safe
+81.0,73.9,Safe
+36.9,52.2,At Risk
+90.3,39.9,Safe
+61.4,53.8,Safe
+47.5,93.9,Safe
+90.3,64.0,Safe
+99.9,86.9,Safe
+94.8,87.9,Safe
+64.0,37.1,At Risk
+34.1,50.3,At Risk
+48.6,82.7,Safe
+59.6,96.6,Safe
+68.9,77.5,Safe
+50.8,97.5,Safe
+68.0,79.8,Safe
+70.9,60.2,Safe
+41.0,96.9,Safe
+43.0,67.6,At Risk
+46.5,29.6,At Risk
+47.2,67.6,Safe
+59.3,66.7,Safe
+95.4,36.3,Safe
+46.7,51.7,At Risk
+51.0,45.3,At Risk
+35.1,56.7,At Risk
+99.7,25.9,Safe
+48.6,94.7,Safe
+91.5,49.6,Safe
+88.4,76.3,Safe
+99.1,72.3,Safe
+87.2,44.0,Safe
+95.7,30.7,Safe
+37.5,64.3,Safe
+72.3,77.4,Safe
+74.4,41.1,Safe
+93.4,87.7,Safe
+59.7,42.1,Safe
+84.0,71.0,Safe
+81.9,64.1,Safe
+30.7,26.0,At Risk
+93.3,63.6,Safe
+70.8,31.8,Safe
+51.6,91.9,Safe
+90.2,91.9,Safe
+47.5,28.2,At Risk
+91.9,52.5,Safe
+40.8,94.4,Safe
+98.3,84.9,Safe
+31.7,78.9,Safe
+95.2,84.2,Safe
+86.8,41.3,Safe
+37.6,89.8,Safe
+45.6,85.3,Safe
+51.4,83.6,Safe
+31.7,35.5,At Risk
+90.5,97.4,Safe
+74.9,52.0,At Risk
+67.5,95.1,Safe
+97.9,34.3,Safe
+48.6,28.7,At Risk
+81.0,45.1,Safe
+65.8,50.8,Safe
+47.8,76.7,Safe
+94.8,63.1,Safe
+81.9,73.7,Safe
+34.9,73.1,Safe
+52.0,87.8,Safe
+51.0,44.7,At Risk
+58.2,43.7,Safe
+59.4,95.2,Safe
+93.2,69.2,Safe
+68.4,20.0,At Risk
+60.1,66.4,Safe
+62.5,55.4,Safe
+63.1,92.1,Safe
+41.9,26.8,At Risk
+74.3,46.8,At Risk
+82.6,73.8,Safe
+43.9,22.0,At Risk
+63.3,88.0,Safe
+59.0,70.4,Safe
+78.7,59.6,Safe
+75.9,20.4,At Risk
+83.9,28.5,Safe
+42.3,96.6,Safe
+33.5,39.9,At Risk
+62.0,84.1,Safe
+99.2,67.6,Safe
+92.4,69.0,Safe
+65.3,86.4,Safe
+92.8,79.5,Safe
+48.1,39.8,At Risk
+83.6,61.7,Safe
+49.2,26.2,At Risk
+49.0,45.6,At Risk
+39.7,38.5,At Risk
+79.4,25.1,At Risk
+68.0,53.3,Safe
+59.4,92.4,Safe
+78.7,88.5,Safe
+56.6,20.5,At Risk
+82.7,88.3,Safe
+59.3,79.8,Safe
+72.2,37.6,Safe
+60.5,22.3,At Risk
+77.5,52.3,Safe
+62.7,30.2,At Risk
+31.9,51.5,At Risk
+31.9,71.4,Safe
+62.3,24.0,At Risk
+44.8,46.1,At Risk
+56.5,80.2,Safe
+47.7,26.6,At Risk
+67.8,100.0,Safe
+75.5,82.5,Safe
+82.8,96.0,Safe
+31.4,32.2,At Risk
+76.9,65.1,Safe
+79.0,81.4,Safe
+72.5,79.8,Safe
+87.4,97.2,Safe
+31.8,45.0,At Risk
+97.1,51.7,Safe
+35.3,75.2,At Risk
+37.1,81.8,At Risk
+72.0,29.7,At Risk
+84.8,47.8,Safe
+55.9,60.5,Safe
+89.5,85.8,Safe
+97.3,70.8,Safe
+79.5,54.8,Safe
+97.6,41.6,Safe
+67.7,58.7,Safe
+81.2,41.5,At Risk
+88.2,26.9,At Risk
+47.1,57.2,At Risk
+56.5,22.3,At Risk
+42.7,37.0,At Risk
+53.8,90.4,Safe
+49.3,20.8,At Risk
+36.0,77.6,Safe
+83.1,75.2,Safe
+64.4,83.4,Safe
+45.5,75.3,Safe
+70.7,57.9,Safe
+59.8,79.7,Safe
+79.2,41.7,Safe
+38.4,35.4,At Risk
+67.5,81.0,Safe
+45.1,58.7,At Risk
+98.4,62.0,Safe
+37.0,35.5,At Risk
+42.6,21.1,At Risk
+49.2,97.9,Safe
+78.8,30.1,At Risk
+64.4,89.8,Safe
+62.9,55.2,Safe
+33.6,95.3,Safe
+87.5,52.1,Safe
+74.1,24.3,Safe
+69.4,44.3,At Risk
+38.3,81.2,Safe
+85.4,38.1,Safe
+61.5,55.4,At Risk
+99.3,44.4,Safe
+72.7,79.2,Safe
+44.5,36.9,At Risk
+41.0,33.9,At Risk
+30.2,56.0,At Risk
+50.4,38.5,At Risk
+79.2,56.3,Safe
+94.7,83.0,Safe
+76.3,94.7,Safe
+68.1,71.8,Safe
+87.9,25.7,Safe
+51.5,79.9,Safe
+50.2,29.9,At Risk
+79.0,95.4,Safe
+64.6,26.4,At Risk
+60.2,45.8,Safe
+36.4,97.0,Safe
+70.3,96.1,Safe
+77.1,41.6,Safe
+82.9,57.6,Safe
+94.1,34.5,Safe
+74.4,59.3,Safe
+54.4,46.7,At Risk
+90.0,46.4,Safe
+50.2,95.6,Safe
+68.5,56.4,Safe
+52.6,97.6,Safe
+66.0,99.0,Safe
+68.0,53.1,Safe
+55.3,80.5,Safe
+83.2,36.3,Safe
+94.9,55.0,Safe
+38.5,97.9,Safe
+46.8,32.7,At Risk
+68.7,27.5,At Risk
+93.9,56.9,Safe
+88.3,59.9,Safe
+65.6,41.9,At Risk
+98.6,39.5,Safe
+56.9,93.7,Safe
+91.6,89.1,Safe
+85.3,53.2,Safe
+65.5,85.6,Safe
+50.9,67.0,At Risk
+64.3,31.9,At Risk
+54.2,64.2,Safe
+61.9,45.7,Safe
+78.8,65.7,Safe
+84.3,23.5,At Risk
+79.4,84.9,Safe
+76.5,85.7,Safe
+64.7,23.0,At Risk
+71.3,89.6,Safe
+60.8,62.1,Safe
+80.6,52.8,Safe
+40.8,57.6,At Risk
+53.7,75.4,Safe
+89.6,88.2,Safe
+56.6,45.3,At Risk
+83.2,89.8,Safe
+34.8,70.5,At Risk
+99.8,79.7,Safe
+36.9,70.7,At Risk
+61.1,75.5,Safe
+33.2,83.7,Safe
+56.2,31.6,At Risk
+69.6,83.4,Safe
+35.5,89.7,Safe
+46.9,93.0,Safe
+62.3,40.3,Safe
+30.7,84.4,At Risk
+77.4,32.6,Safe
+54.2,67.0,Safe
+59.7,40.0,At Risk
+43.9,50.8,At Risk
+46.6,65.8,At Risk

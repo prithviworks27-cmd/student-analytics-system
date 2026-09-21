@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from tkinter import messagebox
 from database import get_all_students, search_students, add_student, update_student, delete_student
+from database import get_attendance_percentage, get_overall_percentage
+from ml_model import predict_risk
 
 
 class StudentsScreen(ctk.CTkFrame):
@@ -45,6 +47,16 @@ class StudentsScreen(ctk.CTkFrame):
 
         info_text = f"{student['name']}  |  Roll: {student['roll_no']}  |  {student['class_name']} - {student['section']}"
         ctk.CTkLabel(row, text=info_text, anchor="w").pack(side="left", padx=5, fill="x", expand=True)
+
+        attendance_pct = get_attendance_percentage(student["id"])
+        marks_pct = get_overall_percentage(student["id"])
+        risk = predict_risk(attendance_pct, marks_pct)
+
+        badge_color = "#B22222" if risk == "At Risk" else "#2E8B57"
+        ctk.CTkLabel(
+            row, text=risk, width=80, fg_color=badge_color,
+            text_color="white", corner_radius=6
+        ).pack(side="left", padx=5)
 
         ctk.CTkButton(
             row, text="Edit", width=70,
