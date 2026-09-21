@@ -5,11 +5,18 @@ Loads the trained At-Risk classifier and exposes a simple function
 the rest of the app can call: predict_risk(attendance_pct, marks_pct).
 """
 
+import sys
 import os
 import pandas as pd
 import joblib
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    # Running as a packaged PyInstaller app - bundled data files live
+    # in sys._MEIPASS, not next to this module's __file__.
+    BASE_DIR = sys._MEIPASS
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 MODEL_PATH = os.path.join(BASE_DIR, "at_risk_model.joblib")
 _model = None
 

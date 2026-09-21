@@ -6,6 +6,7 @@ and a class-wide Excel summary. Both pull live data from the database.
 """
 
 import os
+import sys
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
 from reportlab.lib import colors
@@ -18,7 +19,11 @@ from ml_model import predict_risk
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    BASE_DIR = sys._MEIPASS
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 REPORTS_DIR = os.path.join(BASE_DIR, "reports_output")
 
 

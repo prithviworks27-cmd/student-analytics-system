@@ -120,13 +120,15 @@ def init_db():
 
 def add_student(name, roll_no, class_name, section):
     conn = get_connection()
-    cur = conn.cursor()
-    cur.execute(
-        "INSERT INTO students (name, roll_no, class_name, section) VALUES (?, ?, ?, ?)",
-        (name, roll_no, class_name, section)
-    )
-    conn.commit()
-    conn.close()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO students (name, roll_no, class_name, section) VALUES (?, ?, ?, ?)",
+            (name, roll_no, class_name, section)
+        )
+        conn.commit()
+    finally:
+        conn.close()
 
 def get_all_students():
     conn = get_connection()
@@ -168,10 +170,12 @@ def delete_student(student_id):
 def add_subject(name):
     name = normalize_name(name)
     conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("INSERT INTO subjects (name) VALUES (?)", (name,))
-    conn.commit()
-    conn.close()
+    try:
+        cur = conn.cursor()
+        cur.execute("INSERT INTO subjects (name) VALUES (?)", (name,))
+        conn.commit()
+    finally:
+        conn.close()
 
 def get_all_subjects():
     conn = get_connection()

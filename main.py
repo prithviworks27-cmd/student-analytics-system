@@ -7,6 +7,15 @@ Entry point of the application. Run this file to start the app:
 
 Flow: init the database -> show Login screen -> on success, show Dashboard.
 """
+import sys
+import os
+
+if getattr(sys, 'frozen', False):
+    # Running as a packaged app (PyInstaller) - stdout/stderr have nowhere
+    # to go and can fill up and block. Redirect them to a log file instead.
+    log_path = os.path.join(os.path.expanduser("~"), "student_analytics_log.txt")
+    sys.stdout = open(log_path, "a")
+    sys.stderr = sys.stdout
 
 from database import init_db
 from gui.login_screen import LoginScreen
