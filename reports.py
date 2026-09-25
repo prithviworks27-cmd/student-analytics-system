@@ -20,11 +20,12 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment
 
 if getattr(sys, 'frozen', False):
-    BASE_DIR = sys._MEIPASS
+    APP_DATA_DIR = os.path.join(os.path.expanduser("~"), "StudentAnalyticsSystem")
+    os.makedirs(APP_DATA_DIR, exist_ok=True)
+    REPORTS_DIR = os.path.join(APP_DATA_DIR, "reports_output")
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-REPORTS_DIR = os.path.join(BASE_DIR, "reports_output")
+    REPORTS_DIR = os.path.join(BASE_DIR, "reports_output")
 
 
 def generate_student_report_pdf(student):

@@ -11,6 +11,7 @@ No server, no internet needed — the whole app runs offline.
 import sqlite3
 import os
 import hashlib
+import sys
 
 
 def normalize_name(text):
@@ -18,7 +19,14 @@ def normalize_name(text):
     entries. e.g. 'data structures', 'DATA STRUCTURES', 'Data Structures'
     all become 'Data Structures'. Same idea for exam types like 'mid-term'."""
     return text.strip().title()
-DB_NAME = os.path.join(os.path.dirname(__file__), "school.db")
+if getattr(sys, 'frozen', False):
+    # Packaged app: store the database in the user's home folder,
+    # not inside the read-only app bundle.
+    APP_DATA_DIR = os.path.join(os.path.expanduser("~"), "StudentAnalyticsSystem")
+    os.makedirs(APP_DATA_DIR, exist_ok=True)
+    DB_NAME = os.path.join(APP_DATA_DIR, "school.db")
+else:
+    DB_NAME = os.path.join(os.path.dirname(__file__), "school.db")
 
 
 def get_connection():
@@ -152,19 +160,24 @@ def search_students(keyword):
 
 def update_student(student_id, name, roll_no, class_name, section):
     conn = get_connection()
-    cur = conn.cursor()
-    cur.execute(
-        "UPDATE students SET name = ?, roll_no = ?, class_name = ?, section = ? WHERE id = ?",
-        (name, roll_no, class_name, section, student_id)
-    )
-    conn.commit()
-    conn.close()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "UPDATE students SET name = ?, roll_no = ?, class_name = ?, section = ? WHERE id = ?",
+            (name, roll_no, class_name, section, student_id)
+        )
+        conn.commit()
+    finally:
+        conn.close()
 
 def delete_student(student_id):
     conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("DELETE FROM students WHERE id = ?", (student_id,))
-    conn.commit()
+    try:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM students WHERE id = ?", (student_id,))
+        conn.commit()
+    finally:
+        conn.close()
     conn.close()
 
 def add_subject(name):
